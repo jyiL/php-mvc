@@ -66,7 +66,7 @@ if (!empty($list)) {
     for($i = $startIndex; $i <= $endIndex; $i++) {
         echo '<tr>';
         echo '<td>' . $list[$i]['id'] . '</td>';
-        echo '<td>' . $list[$i]['name'] . '</td>';
+        echo '<td style="text-align: left">' . $list[$i]['name'] . '</td>';
         echo '<td>' . $list[$i]['created_at'] . '</td>';
         echo "<td>
 <input type='button' value='添加' onclick='add({$list[$i]["id"]});' />

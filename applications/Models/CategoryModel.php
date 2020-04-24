@@ -20,7 +20,8 @@ class CategoryModel extends Model
      */
     public function category() : array
     {
-        return $this->generateTree($this->selectAll('', '', 'order by created_at desc'));
+        $data =$this->generateTree($this->selectAll('', '', 'order by created_at desc'));
+        return printTree($data);
     }
 
     /**

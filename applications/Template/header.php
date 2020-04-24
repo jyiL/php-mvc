@@ -20,7 +20,7 @@ eof;
 echo $html;
 
 $hiddenForm = <<<form
-<form id="hidden-form" method='post' action="/admin/user/logout">
+<form id="hidden-form-header" method='post' action="/admin/user/logout">
 </form>
 form;
 
@@ -29,7 +29,7 @@ echo $hiddenForm;
 $sccipt = <<<script
 <script>
     function logout() {
-        var form = document.getElementById('hidden-form');
+        var form = document.getElementById('hidden-form-header');
         form.submit();
     }
 </script>

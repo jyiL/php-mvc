@@ -78,7 +78,7 @@ class UserController extends Controller
                 $usersModel = new UsersModel();
 
                 $params['password'] = md5Encrypt($params['password']);
-                $id = $usersModel->select(['id'], $params);
+                $id = $usersModel->select(['id'], ['name' => $params['name']]);
 
                 if ($id) {
                     throw printf('账号已存在');

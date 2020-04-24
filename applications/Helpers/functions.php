@@ -41,6 +41,26 @@ function md5Encrypt(string $password) : string
     return base64_encode(md5($password . 'tf@', true));
 }
 
+function printTree(&$data,$level=0)
+{
+    foreach($data as $key=>&$value){
+        for($i=0;$i<$level;$i++){
+            // echo '&emsp;&emsp;';
+            $value['name'] = '└―' . $value['name'];
+        }
+        for($i=0;$i<$level;$i++){
+            // echo '&emsp;&emsp;';
+            $value['name'] = '&emsp;' . $value['name'];
+        }
+
+        if(!empty($value['children'])){
+            printTree($value['children'],$level+1);
+        }
+    }
+
+    return $data;
+}
+
 /**
  * 获取子分类html渲染
  *
@@ -53,7 +73,7 @@ function getCategoryChildrenHtml(array $data)
         foreach ($data['children'] as $child) {
             echo '<tr>';
             echo "<td style='width: 100px'>{$child['id']}&nbsp</td>";
-            echo "<td>{$child['name']}</td>";
+            echo "<td style='text-align: left'>{$child['name']}</td>";
             echo "<td>{$child['created_at']}</td>";
             echo "<td>
 <input type='button' value='添加' onclick='add({$child["id"]});' />
