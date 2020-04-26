@@ -14,7 +14,7 @@
     chmod +x install.sh
     
     # 创建数据库表
-    ./install.sh
+    ./install.sh or php install.php
     
 ### Browse（浏览器）
     http://domain
