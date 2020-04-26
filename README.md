@@ -11,6 +11,9 @@
     # 修改数据库配置
     vi config/config.php
     
+    # 修改index.php文件下的APP_URL
+    APP_URL = domain
+    
     chmod +x install.sh
     
     # 创建数据库表
