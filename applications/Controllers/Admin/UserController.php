@@ -30,21 +30,23 @@ class UserController extends Controller
 
                 if (!$params) throw printf('参数有误');
 
-                if (!$this->isPassword($params['password'])) {
-                    throw printf('密码必须为字母或数字');
+                if (!isName($params['name'])) {
+                    throw printf('用户名必须为8-12为字母或数字');
+                }
+
+                if (!isPassword($params['password'])) {
+                    throw printf('密码必须为6位数字');
                 }
 
                 $usersModel = new UsersModel();
 
                 $params['password'] = md5Encrypt($params['password']);
 
-                $id = $usersModel->select(['id'], $params);
+                $userInfo = $usersModel->select(['id', 'name'], $params);
 
-                if (!$id) {
+                if (!$userInfo) {
                     throw printf('账号或密码错误');
                 }
-
-                $userInfo = $usersModel->select(['id', 'name'], $params);
 
                 $_SESSION['user_info'] = $userInfo;
 
@@ -71,8 +73,12 @@ class UserController extends Controller
 
                 if (!$params) throw printf('参数有误');
 
-                if (!$this->isPassword($params['password'])) {
-                    throw printf('密码必须为字母或数字');
+                if (!isName($params['name'])) {
+                    throw printf('用户名必须为8-12为字母或数字');
+                }
+
+                if (!isPassword($params['password'])) {
+                    throw printf('密码必须为6位数字');
                 }
 
                 $usersModel = new UsersModel();

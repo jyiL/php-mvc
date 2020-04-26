@@ -28,35 +28,19 @@ $html = <<<html
     </style>
 </head>
 <body>
-    
-    <form id="register-form" method='post' action="/admin/user/register">
+    <form id="register-form" method='post' action="/admin/user/register" onsubmit="return checkForm('register-form');">
         <span><h2>注册</h2></span>
         <p>账号：<input type="text" name="name"></p>
+        <p><span id="name-error-message" style="color: red;"></span></p>
         <p>密码：<input type="text" name="password"></p>
+        <p><span id="password-error-message" style="color: red;"></span></p>
         <input type="button" value="登录" onclick="javascript:window.location.href='/admin/user/login'">
         <button>提交</button>
     </form>
 </body>
 </html>
-<script>
-    function register() {
-        console.log(getElements('register-form'));
-        console.log(document.getElementById('register-form'));
-
-        return false;
-    }
-
-    function getElements(formId) {
-        var form = document.getElementById(formId);
-        var elements = new Array();
-        var tagElements = form.getElementsByTagName('input');
-        for (var j = 0; j < tagElements.length; j++){
-            elements.push(tagElements[j]);
-
-        }
-        return elements;
-    }
-</script> 
 html;
 
 echo $html;
+
+require_once TEMPLATE_PATH . 'common.php';

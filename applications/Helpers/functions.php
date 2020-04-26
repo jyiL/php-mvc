@@ -89,3 +89,38 @@ function getCategoryChildrenHtml(array $data)
         }
     }
 }
+
+/**
+ * 校验用户名
+ *
+ * @param string $name
+ *
+ * @return bool
+ */
+function isName(string $name) : bool
+{
+    $pattern="/^\w\w{5,11}$/";
+    if(preg_match($pattern, $name)){
+        return true;
+    } else {
+        return false;
+    }
+}
+
+/**
+ * 检验密码
+ *
+ * @param string $password
+ *
+ * @return bool
+ */
+function isPassword(string $password) : bool
+{
+//        $pattern="/^[0-9a-zA-Z]{6,16}$/i";
+    $pattern="/^\d\d{5}$/";
+    if(preg_match($pattern, $password)){
+        return true;
+    } else {
+        return false;
+    }
+}

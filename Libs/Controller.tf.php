@@ -35,21 +35,4 @@ class Controller
     {
         $this->template->assign($name,$value);
     }
-
-    /**
-     * 检验密码是否为字母和数字
-     *
-     * @param string $password
-     *
-     * @return bool
-     */
-    protected function isPassword($password) : bool
-    {
-        $pattern="/^[0-9a-zA-Z]{6,16}$/i";
-        if(preg_match($pattern, $password)){
-            return true;
-        } else {
-            return false;
-        }
-    }
 }

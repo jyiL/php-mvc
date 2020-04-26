@@ -1,10 +1,20 @@
 ## php mvc 框架
 
+#### 请确保你的服务器满足以下要求
+* PHP >= 7.3
+* OpenSSL PHP 拓展
+* PDO PHP 拓展
+
 ### 安装
     git clone git@github.com:jyiL/php-mvc.git
-    vi config/config.php // 修改数据库配置
+    
+    # 修改数据库配置
+    vi config/config.php
+    
     chmod +x install.sh
-    ./install.sh    // 创建数据库表
+    
+    # 创建数据库表
+    ./install.sh
     
 ### Browse（浏览器）
     http://domain
