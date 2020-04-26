@@ -140,7 +140,7 @@ Class Autoloader
         if ( strncmp(self::NAMESPACE_PREFIX, $className, $namespacePrefixStrlen) === 0 ){
             $filePath = str_replace('\\', DIRECTORY_SEPARATOR, substr($className, $namespacePrefixStrlen));
 
-            $ucFirst = trim(substr($filePath, strrpos($filePath, '/')), '/');
+            $ucFirst = trim(substr($filePath, strrpos($filePath, DIRECTORY_SEPARATOR)), DIRECTORY_SEPARATOR);
 
             $filePath = str_replace($ucFirst, ucfirst($ucFirst), $filePath);
 
