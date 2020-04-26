@@ -9,7 +9,7 @@ declare(strict_types=1);
  */
 
 define('APP_PATH', __DIR__ . DIRECTORY_SEPARATOR);
-define('APP_DEBUG', true);
+define('APP_DEBUG', false);
 define('APP_URL', '');
 
 require_once __DIR__ . DIRECTORY_SEPARATOR . 'Libs' . DIRECTORY_SEPARATOR . 'framework.php';

@@ -16,6 +16,16 @@ Class Autoloader
     const CONTROLLER_NAME = 'Index';
     const ACTION_NAME = 'Index';
 
+    /**
+     * 是否多目录
+     */
+    private $manyDirFlag = false;
+
+    /**
+     * 目录名称
+     */
+    private $DirName = false;
+
     public function run()
     {
         spl_autoload_register(array(new self, 'autoload'));
@@ -72,7 +82,18 @@ Class Autoloader
             $requestUrl = str_replace(strstr($requestUrl, '?'), '', $requestUrl);
             $requestUrl = explode('/', $requestUrl);
 
-            if (count($requestUrl) < 2) header('location:/error/not_found');
+            $firstRequestUrl = array_shift($requestUrl);
+
+            if (strpos(APP_PATH, $firstRequestUrl) !== false) {
+                // 多目录环境下访问
+
+            } else {
+                // 单域名或单目录访问
+                array_unshift($requestUrl, $firstRequestUrl);
+                var_dump(123123);
+
+                if (count($requestUrl) < 2) header('location:/error/not_found');
+            }
         }
 
         $actionName = empty($requestUrl) ? self::ACTION_NAME : array_pop($requestUrl);
@@ -99,7 +120,12 @@ Class Autoloader
             call_user_func_array([$obj, $actionName], $queryString);
         } else {
 //            throw printf((new TFException())::ACTION_IS_ERROR);
-            header('location:/error/not_found');
+            if ($this->manyDirFlag) {
+                header("location:/{$this->DirName}/error/not_found");
+            } else {
+                header('location:/error/not_found');
+            }
+
         }
     }
 
@@ -113,7 +139,6 @@ Class Autoloader
         $namespacePrefixStrlen = strlen(self::NAMESPACE_PREFIX);
 
         if ( strncmp(self::NAMESPACE_PREFIX, $className, $namespacePrefixStrlen) === 0 ){
-//            $className = strtolower($className);
             $filePath = str_replace('\\', DIRECTORY_SEPARATOR, substr($className, $namespacePrefixStrlen));
 
             $ucFirst = trim(substr($filePath, strrpos($filePath, '/')), '/');
@@ -126,8 +151,8 @@ Class Autoloader
             if (file_exists($filePath)) {
                 require_once $filePath;
             } else {
-//                throw printf((new TFException())::PATH_INFO_IS_ERROR);
-                header('location:/error/not_found');
+                throw printf((new TFException())::PATH_INFO_IS_ERROR);
+//                header('location:/error/not_found');
             }
         }
     }
