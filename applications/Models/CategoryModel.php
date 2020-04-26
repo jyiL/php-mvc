@@ -46,8 +46,6 @@ class CategoryModel extends Model
             if ($val['parent_id'] == $level) {
                 $tree[] = &$packData[$key];
             } else {
-//                $flg = str_repeat('└―', $lv);
-//                $val['name'] = $flg . $val['name'];
                 $packData[$val['parent_id']]['children'][] = &$packData[$key];
             }
         }

@@ -104,8 +104,9 @@ class CategoryController extends Controller
         if (!$categoryModel->select(['id'], $params))
             throw printf('分了不存在');
 
-        if ($categoryModel->select(['id'], ['parent_id' => $params['id']]))
+        if ($categoryModel->select(['id'], ['parent_id' => $params['id']])) {
             throw printf('当前分类存在子分类不允许删除');
+        }
 
         $res = $categoryModel->delete((int)$params['id']);
 

@@ -20,9 +20,11 @@ Class Autoloader
     {
         spl_autoload_register(array(new self, 'autoload'));
 
-        $this->setReporting();
-        $this->filter();
-        $this->route();
+        if(substr(PHP_SAPI_NAME(),0,3) !== 'cli'){
+            $this->setReporting();
+            $this->filter();
+            $this->route();
+        }
     }
 
 
