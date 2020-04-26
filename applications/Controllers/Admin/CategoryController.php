@@ -55,7 +55,8 @@ class CategoryController extends Controller
             throw printf('新建失败');
         }
 
-        header('location:/Admin/Category/list');
+        $_headerUrl = APP_URL ? APP_URL . '/Admin/Category/list' : '/Admin/Category/list';
+        header("location:{$_headerUrl}");
     }
 
     /**
@@ -84,7 +85,8 @@ class CategoryController extends Controller
             throw printf('更新失败');
         }
 
-        header('location:/Admin/Category/list');
+        $_headerUrl = APP_URL ? APP_URL . '/Admin/Category/list' : '/Admin/Category/list';
+        header("location:{$_headerUrl}");
     }
 
     /**
@@ -114,6 +116,7 @@ class CategoryController extends Controller
             throw printf('删除失败');
         }
 
-        header('location:/Admin/Category/list');
+        $_headerUrl = APP_URL ? APP_URL . '/Admin/Category/list' : '/Admin/Category/list';
+        header("location:{$_headerUrl}");
     }
 }

@@ -7,6 +7,9 @@ declare(strict_types=1);
  * Email: avril.leo@yahoo.com
  */
 
+$login_url = APP_URL ? APP_URL . '/admin/user/login' : '/admin/user/login';
+$register_url = APP_URL ? APP_URL . '/admin/user/register' : '/admin/user/register';
+
 $html = <<<html
 <!DOCTYPE html>
 <html lang="en">
@@ -28,13 +31,13 @@ $html = <<<html
     </style>
 </head>
 <body>
-    <form id="register-form" method='post' action="/admin/user/register" onsubmit="return checkForm('register-form');">
+    <form id="register-form" method='post' action="{$register_url}" onsubmit="return checkForm('register-form');">
         <span><h2>注册</h2></span>
         <p>账号：<input type="text" name="name"></p>
         <p><span id="name-error-message" style="color: red;"></span></p>
         <p>密码：<input type="text" name="password"></p>
         <p><span id="password-error-message" style="color: red;"></span></p>
-        <input type="button" value="登录" onclick="javascript:window.location.href='/admin/user/login'">
+        <input type="button" value="登录" onclick="javascript:window.location.href='{$login_url}'">
         <button>提交</button>
     </form>
 </body>

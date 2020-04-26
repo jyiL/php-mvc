@@ -50,7 +50,8 @@ class UserController extends Controller
 
                 $_SESSION['user_info'] = $userInfo;
 
-                header('location:/Admin/category/list');
+                $_headerUrl = APP_URL ? APP_URL . '/Admin/category/list' : '/Admin/category/list';
+                header("location:{$_headerUrl}");
                 break;
             default:
                 break;
@@ -102,7 +103,8 @@ class UserController extends Controller
 
                 $_SESSION['user_info'] = $userInfo;
 
-                header('location:/Admin/category/list');
+                $_headerUrl = APP_URL ? APP_URL . '/Admin/category/list' : '/Admin/category/list';
+                header("location:{$_headerUrl}");
                 break;
             default:
                 break;
@@ -135,6 +137,7 @@ class UserController extends Controller
 
         unset($_SESSION['user_info']);
 
-        header('location:/Admin/User/login');
+        $_headerUrl = APP_URL ? APP_URL . '/Admin/User/login' : '/Admin/User/login';
+        header("location:{$_headerUrl}");
     }
 }

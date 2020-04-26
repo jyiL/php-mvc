@@ -7,6 +7,8 @@ declare(strict_types=1);
  * Email: avril.leo@yahoo.com
  */
 
+$category_url = APP_URL ? APP_URL . '/admin/category/' : '/admin/category/';
+
 $perNum = 3;
 
 $nums = count($list);
@@ -99,7 +101,7 @@ echo '<a href="?page=' . $totalPages . '">尾页</a>';
 echo '</div>';
 
 $hiddenForm = <<<form
-<form id="hidden-form" method='post' action="/admin/category/create">
+<form id="hidden-form" method='post' action="{$category_url}create">
     <input type="hidden" name="name" value="" />
     <input type="hidden" name="parent_id" value=0 />
     <input type="hidden" name="id" value=0 />
@@ -117,7 +119,7 @@ $script = <<<script
         
         if(name){
             var form = document.getElementById('hidden-form');
-            form.action = "/admin/category/create";
+            form.action = "{$category_url}create";
             form.name.value = name;
             form.parent_id.value = id;
             form.submit();
@@ -132,7 +134,7 @@ $script = <<<script
         
         if(name){
             var form = document.getElementById('hidden-form');
-            form.action = "/admin/category/update";
+            form.action = "{$category_url}update";
             form.name.value = name;
             form.id.value = id;
             form.submit();
@@ -142,7 +144,7 @@ $script = <<<script
         var msg = "您真的确定要删除吗？";
         if (confirm(msg)==true){
             var form = document.getElementById('hidden-form');
-            form.action = "/admin/category/delete";
+            form.action = "{$category_url}delete";
             form.id.value = id;
             form.submit();
         }else{

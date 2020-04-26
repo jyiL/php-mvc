@@ -7,7 +7,12 @@ declare(strict_types=1);
  * Email: avril.leo@yahoo.com
  */
 
-if (!isset($_SESSION['user_info'])) header('location:/Admin/User/login');
+if (!isset($_SESSION['user_info'])) {
+    $_headerUrl = APP_URL ? APP_URL . '/Admin/User/login' : '/Admin/User/login';
+    header("location:{$_headerUrl}");
+}
+
+$logout_url = APP_URL ? APP_URL . '/admin/user/logout' : '/admin/user/logout';
 
 $html = <<<eof
 <html>
@@ -20,7 +25,7 @@ eof;
 echo $html;
 
 $hiddenForm = <<<form
-<form id="hidden-form-header" method='post' action="/admin/user/logout">
+<form id="hidden-form-header" method='post' action="{$logout_url}">
 </form>
 form;
 
