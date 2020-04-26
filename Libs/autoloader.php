@@ -90,7 +90,6 @@ Class Autoloader
             } else {
                 // 单域名或单目录访问
                 array_unshift($requestUrl, $firstRequestUrl);
-                var_dump(123123);
 
                 if (count($requestUrl) < 2) header('location:/error/not_found');
             }

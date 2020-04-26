@@ -16,6 +16,8 @@
     # 创建数据库表
     ./install.sh or php install.php
     
+* `注意：windows系统建议执行php install.php`
+    
 ### Browse（浏览器）
     http://domain
     
